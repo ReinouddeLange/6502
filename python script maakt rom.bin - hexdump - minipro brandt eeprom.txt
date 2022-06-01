@@ -1,0 +1,35 @@
+Reinoud@MacBook-Pro-van-Reinoud ~> vim makerom.py
+
+rom = bytearray([0xea] * 32768)
+
+with open("rom.bin", "wb") as out_file:
+  out_file.write(rom);
+
+
+Reinoud@MacBook-Pro-van-Reinoud ~> python makerom.py
+Reinoud@MacBook-Pro-van-Reinoud ~> hexdump -C rom.bin
+00000000  ea ea ea ea ea ea ea ea  ea ea ea ea ea ea ea ea  |................|
+*
+00008000
+Reinoud@MacBook-Pro-van-Reinoud ~> minipro -p AT28C256 -w rom.bin
+Found TL866II+ 04.2.128 (0x280)
+Warning: Firmware is newer than expected.
+  Expected  04.2.122 (0x27a)
+  Found     04.2.128 (0x280)
+Erasing... 0.02Sec OK
+Protect off...OK
+Writing Code...  6.77Sec  OK
+Reading Code...  0.49Sec  OK
+Verification OK
+Protect on...OK
+Reinoud@MacBook-Pro-van-Reinoud ~> minipro -p AT28C256 -r rom2.bin
+Found TL866II+ 04.2.128 (0x280)
+Warning: Firmware is newer than expected.
+  Expected  04.2.122 (0x27a)
+  Found     04.2.128 (0x280)
+Reading Code...  0.49Sec  OK
+Reinoud@MacBook-Pro-van-Reinoud ~> hexdump -C rom2.bin
+00000000  ea ea ea ea ea ea ea ea  ea ea ea ea ea ea ea ea  |................|
+*
+00008000
+Reinoud@MacBook-Pro-van-Reinoud ~>
