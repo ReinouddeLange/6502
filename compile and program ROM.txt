@@ -1,0 +1,22 @@
+Compile binaries
+----------------
+vasm6502_oldstyle -Fbin -dotdir -o test.bin test.asm
+
+'/Users/Reinoud/Documents/Privé/Privé stuff/vasm6502_oldstyle/mac/vasm6502_oldstyle' -Fbin -dotdir -o '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2dec.bin' '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2dec.s'
+
+'/Users/Reinoud/Documents/Privé/Privé stuff/vasm6502_oldstyle/mac/vasm6502_oldstyle' -Fbin -dotdir -o '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2decv2.bin' '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2decv2.s'
+
+Hexdump
+-------
+hexdump -C '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2dec.bin'
+
+hexdump -C '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2decv2.bin'
+
+Program ROM
+-----------
+minipro -p AT28C256 -w '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2dec.bin'
+
+minipro -p AT28C256 -w '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2decv2.bin'
+
+
+
