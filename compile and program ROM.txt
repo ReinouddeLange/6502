@@ -14,9 +14,9 @@ hexdump -C '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2decv2.bi
 
 Program ROM
 -----------
-minipro -p AT28C256 -w '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2dec.bin'
+minipro -p AT28C256 -u -w '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2dec.bin'
 
-minipro -p AT28C256 -w '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2decv2.bin'
+minipro -p AT28C256 -u -w '/Users/Reinoud/Desktop/Ben Eater 6502/Binary to decimal/bin2decv2.bin'
 
 
 
