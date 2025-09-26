@@ -1,0 +1,61 @@
+Samenvatting
+
+In deze video bouwt Ben Eater verder aan zijn 6502-computer en probeert hij de Hello World-uitvoer op een LCD betrouwbaar te maken bij een kloksnelheid van 1 MHz.
+	•	Probleem: Bij de overstap van een trage handmatige klok naar een 1 MHz oscillator werkte het LCD niet meer. De processor stuurde te snel nieuwe instructies, 
+		terwijl het LCD nog bezig was met de vorige.
+	•	Eerste poging: Hij probeerde vertraging toe te voegen met NOP-instructies. Uiteindelijk werkte het pas met 750 NOP’s (1,5 ms vertraging), 
+		maar dat was omslachtig en onduidelijk.
+	•	Oplossing: Het LCD-datasheet raadt aan de busy flag te controleren. Hij schreef een subroutine in assembly die:
+	•	Port B tijdelijk als input zet,
+	•	het busy-flag uitleest,
+	•	in een lus wacht tot het LCD klaar is,
+	•	en daarna verdergaat met de volgende instructie.
+	•	Resultaat: Het programma werkte betrouwbaar zonder honderden NOP’s, en bovendien sneller. Analyse met een oscilloscoop liet zien dat vooral de clear 
+		display-instructie veel langer duurt (±1,5 ms) dan de andere commando’s.
+	•	Verbetering: In plaats van losse karakters naar het LCD te sturen, schreef hij een lus die een string uit het geheugen leest tot een null-byte (.asciiz). 
+		Dit maakt het makkelijker om langere teksten of meerdere regels op het LCD te tonen.
+	•	Afronding: Het Hello World-programma werkt nu netjes en flexibel. Ben besluit dit hoofdstuk af te sluiten en kondigt toekomstige uitbreidingen van de 6502-computer aan.
+
+
+
+Hier is de puntsgewijze samenvatting, inclusief uitleg van hoe de loop in de code werkt:
+
+⸻
+
+Samenvatting – Belangrijkste punten
+	•	Probleem bij 1 MHz klok:
+	•	Het LCD reageert trager dan de processor.
+	•	De 6502 stuurde nieuwe instructies terwijl het LCD nog bezig was met de vorige.
+	•	Eerste oplossing (NOPs):
+	•	Door NOP-instructies toe te voegen creëerde hij vertraging.
+	•	Pas met 750 NOPs (ca. 1,5 ms delay) werkte het stabiel.
+	•	Dit was niet praktisch en erg omslachtig.
+	•	Definitieve oplossing (busy flag):
+	•	Het datasheet adviseert om de busy flag van het LCD te controleren.
+	•	Nieuwe instructies worden pas gestuurd als het LCD klaar is.
+	•	Hiervoor maakte Ben een subroutine (LCD Wait):
+	•	Zet Port B tijdelijk op input.
+	•	Lees de data van het LCD, waarbij de hoogste bit het busy-flag is.
+	•	Gebruik een AND-instructie om alleen die bit over te houden.
+	•	Zolang de bit ≠ 0 blijft de code in een lus (loop) hangen.
+	•	Als de bit 0 is, zet hij Port B terug naar output en gaat verder.
+	•	Resultaat:
+	•	Programma werkt weer betrouwbaar, zelfs op 1 MHz.
+	•	Geen lange rijen nutteloze NOPs meer.
+	•	Programma is sneller en netter.
+	•	Extra verbetering (loop voor tekst):
+	•	In plaats van elk karakter apart in te typen, plaatst hij de hele tekst ("Hello World") als string in geheugen met .asciiz.
+	•	De loop werkt zo:
+	1.	Zet register X op 0 (index in de string).
+	2.	Lees het karakter op adres message + X in de A-register.
+	3.	Controleer op null-byte (0): als dit is bereikt → einde van de tekst.
+	4.	Print het karakter naar het LCD.
+	5.	Verhoog X met 1.
+	6.	Spring terug naar het begin van de loop.
+	•	Zo worden automatisch alle karakters van de string naar het LCD gestuurd, tot het eindteken (0) wordt bereikt.
+	•	Afronding:
+	•	Het Hello World-programma is nu netjes en uitbreidbaar.
+	•	Het LCD kan meerdere regels tonen.
+	•	Ben sluit dit hoofdstuk af en kondigt nieuwe uitbreidingen aan.
+
+⸻
