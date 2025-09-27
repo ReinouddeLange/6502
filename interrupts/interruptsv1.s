@@ -31,7 +31,7 @@ reset:
   jsr lcd_instruction
   lda #%00000110 ; Increment and shift cursor; don't shift display
   jsr lcd_instruction
-  lda #$00000001 ; Clear display
+  lda #%00000001 ; Clear display
   jsr lcd_instruction
 
   lda #0
@@ -39,7 +39,7 @@ reset:
   sta counter +1
 
 loop:
-  lda #$00000010 ; Home
+  lda #%00000010 ; Home
   jsr lcd_instruction
   
   lda #0
