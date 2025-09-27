@@ -45,7 +45,7 @@ loop:
   lda #0
   sta message ; load empty string in RAM
   
-  ; Initialize number to convert
+  ; Initialize value to be the number to convert
   sei
   lda counter
   sta value 
