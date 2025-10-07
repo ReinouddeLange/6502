@@ -1,0 +1,1 @@
+To make the interrupts work properly, I've made a modification. The trace running from the IRQ pins between the 6502 and 6522 has been interrupted and replaced with a diode. The IRQ pin on the 6502 has also been given a pull-up resistor.
